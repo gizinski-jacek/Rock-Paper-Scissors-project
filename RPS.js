@@ -2,16 +2,17 @@
 let playerScore = 0;
 let computerScore = 0;
 
-// Ask player for his choice and randomize computers choice.
+// Ask player for his choice of Rock, Paper, Scissors.
 let playerSelection = prompt('Do you play Rock, Paper or Scissors?');
 
+// Randomize computers choice of Rock, Paper, Scissors.
 function computerPlay() {
     const array = ['Rock', 'Paper', 'Scissors'];
     return array[Math.floor(Math.random()*array.length)];
 }
 
-// Play out single round of Rock, Paper, Scissors. Choices are case insensitive.
-// Show outcome and update game score for player and computer.
+// Play out single round of RPS. Choices are case insensitive.
+// Show outcome and increase player of computer score by one.
 function playRound(playerPick = playerSelection, computerPick = computerPlay()) {
     playerPick = playerPick.toLowerCase();
     computerPick = computerPick.toLowerCase();
@@ -40,7 +41,8 @@ function playRound(playerPick = playerSelection, computerPick = computerPlay()) 
     }
 }
 
-// Function playing out best-of-nine. Checks if user made choice of a R/P/S.
+// Function playing out best-of-nine.
+// Checks if user made choice of a R/P/S. Throws error if didn't.
 // Shows winner and final score at the end.
 function game() {
     playerRPS = playerSelection.toLowerCase();
