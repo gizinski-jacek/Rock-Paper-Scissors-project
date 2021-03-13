@@ -16,31 +16,32 @@ function playRound(playerPick = playerSelection, computerPick = computerPlay()) 
     playerPick = playerPick.toLowerCase();
     computerPick = computerPick.toLowerCase();
     if (playerPick == computerPick) {
-        console.log(playerPick + ' versus ' + computerPick + '. It\'s a tie!');
-        console.log('Computer: ' + computerScore);
-        console.log('Player: ' + playerScore);
+        console.log(playerPick + ' versus ' + computerPick);
+        console.log('It\'s a tie!');
+        console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
     } else if (
         (playerPick == 'rock' && computerPick == 'paper') ||
         (playerPick == 'paper' && computerPick == 'scissors') ||
         (playerPick == 'scissors' && computerPick == 'rock')
         ) {
         computerScore++;
-        console.log(computerPick + ' beats ' + playerPick + '. You lost this round!');
-        console.log('Computer: ' + computerScore);
-        console.log('Player: ' + playerScore);
+        console.log(computerPick + ' beats ' + playerPick);
+        console.log('You lost this round!');
+        console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
     } else if (
         (computerPick == 'rock' && playerPick == 'paper') ||
         (computerPick == 'paper' && playerPick == 'scissors') ||
         (computerPick == 'scissors' && playerPick == 'rock')
         ) {
         playerScore++;
-        console.log(playerPick + ' beats ' + computerPick + '. You win this round!');
-        console.log('Computer: ' + computerScore);
-        console.log('Player: ' + playerScore);
+        console.log(playerPick + ' beats ' + computerPick);
+        console.log('You win this round!');
+        console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
     }
 }
 
-// Function playing out 5 rounds. Checks if user made choice of a R/P/S.
+// Function playing out best-of-nine. Checks if user made choice of a R/P/S.
+// Shows winner and final score at the end.
 function game() {
     playerRPS = playerSelection.toLowerCase();
     if (
@@ -48,16 +49,17 @@ function game() {
         (playerRPS == 'paper') ||
         (playerRPS == 'scissors')
         ) {
-        for (let i = 1; i <= 5; i++) {
-            console.log('Prepare yourself, round ' + i + ' is starting!')
+        while ((playerScore) < 5 && (computerScore < 5)) {
+            console.log('Prepare yourself, round 1 is starting!')
             playRound();
+        } if (playerScore === 5) {
+            console.log('You have won!\nFinal score\nPlayer ' + playerScore + ' : ' + computerScore + ' Computer');
+        } else if (computerScore === 5) {
+            console.log('You have lost!\nFinal score\nPlayer ' + playerScore + ' : ' + computerScore + ' Computer');
         }
     } else {
         console.log('Error. You didn\'t choose anything!');
     }
 }
-
-// Need to show final winner of the game and final score.
-// Maybe ask player how many rounds he wants to play.
 
 console.log(game());
