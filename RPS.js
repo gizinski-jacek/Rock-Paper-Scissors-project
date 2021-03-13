@@ -6,36 +6,36 @@ let computerScore = 0;
 let playerSelection = prompt('Do you play Rock, Paper or Scissors?');
 
 // Randomize computers choice of Rock, Paper, Scissors.
-function computerPlay() {
-    const array = ['Rock', 'Paper', 'Scissors'];
-    return array[Math.floor(Math.random()*array.length)];
+function computerSelection() {
+    const choiceRPS = ['Rock', 'Paper', 'Scissors'];
+    return choiceRPS[Math.floor(Math.random()*choiceRPS.length)];
 }
 
 // Play out single round of RPS. Choices are case insensitive.
 // Show outcome and increase player of computer score by one.
-function playRound(playerPick = playerSelection, computerPick = computerPlay()) {
-    playerPick = playerPick.toLowerCase();
-    computerPick = computerPick.toLowerCase();
-    if (playerPick == computerPick) {
-        console.log(playerPick + ' versus ' + computerPick);
+function playRound(playerPlay = playerSelection, computerPlay = computerSelection()) {
+    playerPlay = playerPlay.toLowerCase();
+    computerPlay = computerPlay.toLowerCase();
+    if (playerPlay == computerPlay) {
+        console.log(playerPlay + ' versus ' + computerPlay);
         console.log('It\'s a tie!');
         console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
     } else if (
-        (playerPick == 'rock' && computerPick == 'paper') ||
-        (playerPick == 'paper' && computerPick == 'scissors') ||
-        (playerPick == 'scissors' && computerPick == 'rock')
+        (playerPlay == 'rock' && computerPlay == 'paper') ||
+        (playerPlay == 'paper' && computerPlay == 'scissors') ||
+        (playerPlay == 'scissors' && computerPlay == 'rock')
         ) {
         computerScore++;
-        console.log(computerPick + ' beats ' + playerPick);
+        console.log(computerPlay + ' beats ' + playerPlay);
         console.log('You lost this round!');
         console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
     } else if (
-        (computerPick == 'rock' && playerPick == 'paper') ||
-        (computerPick == 'paper' && playerPick == 'scissors') ||
-        (computerPick == 'scissors' && playerPick == 'rock')
+        (computerPlay == 'rock' && playerPlay == 'paper') ||
+        (computerPlay == 'paper' && playerPlay == 'scissors') ||
+        (computerPlay == 'scissors' && playerPlay == 'rock')
         ) {
         playerScore++;
-        console.log(playerPick + ' beats ' + computerPick);
+        console.log(playerPlay + ' beats ' + computerPlay);
         console.log('You win this round!');
         console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
     }
