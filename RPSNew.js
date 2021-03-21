@@ -3,6 +3,27 @@ let playerScore = 0;
 let computerScore = 0;
 let playerSelection;
 
+const playerRock = document.querySelector('#rock');
+playerRock.addEventListener('click', function(e) {
+    playerSelection = 'rock';
+    playRound();
+    return playerSelection;
+});
+
+const playerPaper = document.querySelector('#paper');
+playerPaper.addEventListener('click', function() {
+    playerSelection = 'rock';
+    playRound();
+    return playerSelection;
+});
+
+const playerScissors = document.querySelector('#scissors');
+playerScissors.addEventListener('click', function() {
+    playerSelection = 'rock';
+    playRound();
+    return playerSelection;
+});
+
 // Ask player for his choice of Rock, Paper, Scissors.
 // let playerSelection = prompt('Do you play Rock, Paper or Scissors?');
 
