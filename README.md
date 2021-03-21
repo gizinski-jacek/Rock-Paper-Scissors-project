@@ -3,3 +3,5 @@
 2021.03.13  Made core of the game with 5 rounds playing out.
 
 2021.03.14  Game plays best-of-nine. Shows final score and winner.
+
+2021.03.21  Starting work on proper UI for the game.

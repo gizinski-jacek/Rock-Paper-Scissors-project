@@ -1,0 +1,14 @@
+body, body * {
+    font-family: Arial, sans-serif;
+}
+
+#buttons-RPS {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    font-size: 20px;
+    margin: 10px 10px 10px 10px;
+}
+
