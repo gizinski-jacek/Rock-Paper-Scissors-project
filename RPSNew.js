@@ -1,91 +1,61 @@
-// Initialize game score.
 let playerScore = 0;
 let computerScore = 0;
 let playerSelection;
+let computerSelection;
 
-const playerRock = document.querySelector('#rock');
-playerRock.addEventListener('click', function(e) {
-    playerSelection = 'rock';
-    playRound();
-    return playerSelection;
-});
+const buttons = document.querySelectorAll('.button');
+const showScore = document.querySelector('#score');
+const showResult = document.querySelector('#result');
+const gameOver = document.querySelector('#gameOver');
 
-const playerPaper = document.querySelector('#paper');
-playerPaper.addEventListener('click', function() {
-    playerSelection = 'rock';
-    playRound();
-    return playerSelection;
-});
-
-const playerScissors = document.querySelector('#scissors');
-playerScissors.addEventListener('click', function() {
-    playerSelection = 'rock';
-    playRound();
-    return playerSelection;
-});
-
-// Ask player for his choice of Rock, Paper, Scissors.
-// let playerSelection = prompt('Do you play Rock, Paper or Scissors?');
+// Attach addEventListener to every class=button, apply the ID of the one user
+// clicked to playerSelection and play one round of RPS.
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playerSelection = button.id.toLowerCase();
+        playRound(playerSelection, computerSelection);
+        if (playerScore === 5 || computerScore === 5) {
+            gameOver.textContent = 'Game over';
+            playerScore = 0;
+            computerScore = 0;
+        }
+    })
+})
 
 // Randomize computers choice of Rock, Paper, Scissors.
-function computerSelection() {
-    const choiceRPS = ['Rock', 'Paper', 'Scissors'];
-    return choiceRPS[Math.floor(Math.random()*choiceRPS.length)];
+const array = ['Rock', 'Paper', 'Scissors'];
+function computerPlay() {
+    return array[Math.floor(Math.random()*array.length)];
 }
 
 // Play out single round of RPS. Choices are case insensitive.
-// Show outcome and increase player of computer score by one.
-function playRound(playerPlay = playerSelection, computerPlay = computerSelection()) {
-    playerPlay = playerPlay.toLowerCase();
-    computerPlay = computerPlay.toLowerCase();
-    if (playerPlay == computerPlay) {
-        console.log(playerPlay + ' versus ' + computerPlay);
-        console.log('It\'s a tie!');
-        console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
+// Update related HTML elements (score, result of round).
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerPlay().toLowerCase();
+    if (playerSelection == computerSelection) {
+        showScore.textContent = 'You ' + playerScore + ' : ' + computerScore + ' Enemy';
+        showResult.textContent = 'It\'s a tie!';
+        gameOver.textContent = '';
     } else if (
-        (playerPlay == 'rock' && computerPlay == 'paper') ||
-        (playerPlay == 'paper' && computerPlay == 'scissors') ||
-        (playerPlay == 'scissors' && computerPlay == 'rock')
+        (playerSelection == 'rock' && computerSelection == 'paper') ||
+        (playerSelection == 'paper' && computerSelection == 'scissors') ||
+        (playerSelection == 'scissors' && computerSelection == 'rock')
         ) {
         computerScore++;
-        console.log(computerPlay + ' beats ' + playerPlay);
-        console.log('You lost this round!');
-        console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
+        computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+        showScore.textContent = 'You ' + playerScore + ' : ' + computerScore + ' Enemy';
+        showResult.textContent = computerSelection + ' beats ' + playerSelection + '. You lost this round.';
+        gameOver.textContent = '';
     } else if (
-        (computerPlay == 'rock' && playerPlay == 'paper') ||
-        (computerPlay == 'paper' && playerPlay == 'scissors') ||
-        (computerPlay == 'scissors' && playerPlay == 'rock')
+        (computerSelection == 'rock' && playerSelection == 'paper') ||
+        (computerSelection == 'paper' && playerSelection == 'scissors') ||
+        (computerSelection == 'scissors' && playerSelection == 'rock')
         ) {
         playerScore++;
-        console.log(playerPlay + ' beats ' + computerPlay);
-        console.log('You win this round!');
-        console.log('Player ' + playerScore + ' : ' + computerScore + ' Computer');
+        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+        showScore.textContent = 'You ' + playerScore + ' : ' + computerScore + ' Enemy';
+        showResult.textContent = playerSelection + ' beats ' + computerSelection + '. You win this round.';
+        gameOver.textContent = '';
     }
 }
-/*
-// Function playing out best-of-nine.
-// Checks if user made choice of a R/P/S. Throws error if didn't.
-// Shows winner and final score at the end.
-function game() {
-    playerRPS = playerSelection.toLowerCase();
-    if (
-        (playerRPS == 'rock') || 
-        (playerRPS == 'paper') ||
-        (playerRPS == 'scissors')
-        ) {
-        while ((playerScore) < 5 && (computerScore < 5)) {
-            console.log('Prepare yourself, round 1 is starting!')
-            playRound();
-        } if (playerScore === 5) {
-            console.log('You have won!\nFinal score\nPlayer ' + playerScore + ' : ' + computerScore + ' Computer');
-        } else if (computerScore === 5) {
-            console.log('You have lost!\nFinal score\nPlayer ' + playerScore + ' : ' + computerScore + ' Computer');
-        }
-    } else {
-        console.log('Error. You didn\'t choose anything!');
-    }
-}
-
-console.log(game());
-*/
-console.log(playRound());

@@ -2,9 +2,21 @@ body, body * {
     font-family: Arial, sans-serif;
 }
 
-#buttons-RPS {
+#titleScore {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 24px;
+}
+
+p {
+    margin: 10px 10px 10px 10px;
+}
+
+#buttonsRPS, #score, #result {
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 button {
