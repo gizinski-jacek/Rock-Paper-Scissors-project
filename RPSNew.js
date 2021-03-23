@@ -6,20 +6,16 @@ let computerSelection;
 const buttons = document.querySelectorAll('.button');
 const updateScore = document.querySelector('#score');
 const updateResult = document.querySelector('#result');
+const allButtonsContainer = document.querySelector('#buttonsRPS');
+const playAgainButtonContainer = document.querySelector('#playAgain');
+const playAgainButton = document.querySelector('#again');
 
 // Attach addEventListener to every class=button, apply the ID of the one user
 // clicked to playerSelection and play one round of RPS.
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (playerScore == 5 || computerScore == 5) {
-            playerScore = 0;
-            computerScore = 0;
-            playerSelection = button.id;
-            playRound(playerSelection, computerSelection);
-        } else {
-            playerSelection = button.id;
-            playRound(playerSelection, computerSelection);
-        }
+        playerSelection = button.id;
+        playRound(playerSelection, computerSelection);
     })
 })
 
@@ -49,6 +45,7 @@ function playRound(playerSelection, computerSelection) {
             updateScore.textContent = playerScore + ' : ' + computerScore;
             updateResult.style.color = "red";
             updateResult.textContent = computerSelection + ' beats ' + playerSelection + '. \nGame over. \nYou lost the game.';
+            switchButtons();
         } else {
         updateScore.textContent = playerScore + ' : ' + computerScore;
         updateResult.style.color = "red";
@@ -65,10 +62,27 @@ function playRound(playerSelection, computerSelection) {
             updateScore.textContent = playerScore + ' : ' + computerScore;
             updateResult.style.color = "green";
             updateResult.textContent = playerSelection + ' beats ' + computerSelection + '. \nGame over. \nYou won the game.';
+            switchButtons();
         } else {
         updateScore.textContent = playerScore + ' : ' + computerScore;
         updateResult.style.color = "green";
         updateResult.textContent = playerSelection + ' beats ' + computerSelection + '. \nYou win this round.';
         }
     }
+}
+
+// Hides RPS buttons once player or computer reaches score of 5.
+// Shows button which upon pressing resets score and shows RPS buttons.
+function switchButtons() {
+    allButtonsContainer.style.display = 'none';
+    playAgainButtonContainer.style.display = 'block';
+    playAgainButton.addEventListener('click', () => {
+        allButtonsContainer.style.display = 'block';
+        playAgainButtonContainer.style.display = 'none';
+        playerScore = 0;
+        computerScore = 0;
+        updateResult.style.color = "black";
+        updateResult.textContent = 'Make your choice by clicking one of the buttons below!';
+        updateScore.textContent = playerScore + ' : ' + computerScore;
+    })
 }

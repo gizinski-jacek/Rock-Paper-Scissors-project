@@ -13,6 +13,14 @@ p {
     margin: 10px 10px 10px 10px;
 }
 
+#buttonsRPS {
+    display: block;
+}
+
+#playAgain {
+    display: none;
+}
+
 #score, #result{
     display: flex;
     justify-content: center;
@@ -25,10 +33,13 @@ p {
 }
 
 button {
-    width: 130px;
+    display: inline-block;
     height: 50px;
     font-size: 20px;
     text-align: center;
     margin: 10px 10px 10px 10px;
 }
 
+button[id='again'] {
+    margin-top: 50px;
+}
