@@ -82,7 +82,7 @@ function switchButtons() {
         playerScore = 0;
         computerScore = 0;
         updateResult.style.color = "black";
-        updateResult.textContent = 'Make your choice by clicking one of the buttons below!';
+        updateResult.textContent = 'Make your choice by clicking buttons below!';
         updateScore.textContent = playerScore + ' : ' + computerScore;
     })
 }

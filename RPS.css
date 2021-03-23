@@ -7,6 +7,10 @@ body, body * {
     flex-direction: column;
     text-align: center;
     font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    white-space: pre-line;
 }
 
 p {
@@ -21,15 +25,11 @@ p {
     display: none;
 }
 
-#score, #result{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-    white-space: pre-line;
-}
 
-#container {
-    position: absolute;
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 button {
@@ -40,6 +40,12 @@ button {
     margin: 10px 10px 10px 10px;
 }
 
-button[id='again'] {
-    margin-top: 50px;
+button[id=again] {
+    margin-top: 100px;
+}
+
+#playAgain, #buttonsRPS {
+    
+    position: absolute;
+    top: 280px;
 }
