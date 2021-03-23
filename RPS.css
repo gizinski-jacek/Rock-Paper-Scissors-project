@@ -13,14 +13,22 @@ p {
     margin: 10px 10px 10px 10px;
 }
 
-#buttonsRPS, #score, #result {
+#score, #result{
     display: flex;
     justify-content: center;
     margin-bottom: 50px;
+    white-space: pre-line;
+}
+
+#container {
+    position: absolute;
 }
 
 button {
+    width: 130px;
+    height: 50px;
     font-size: 20px;
+    text-align: center;
     margin: 10px 10px 10px 10px;
 }
 

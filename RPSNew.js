@@ -4,20 +4,21 @@ let playerSelection;
 let computerSelection;
 
 const buttons = document.querySelectorAll('.button');
-const showScore = document.querySelector('#score');
-const showResult = document.querySelector('#result');
-const gameOver = document.querySelector('#gameOver');
+const updateScore = document.querySelector('#score');
+const updateResult = document.querySelector('#result');
 
 // Attach addEventListener to every class=button, apply the ID of the one user
 // clicked to playerSelection and play one round of RPS.
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        playerSelection = button.id.toLowerCase();
-        playRound(playerSelection, computerSelection);
-        if (playerScore === 5 || computerScore === 5) {
-            gameOver.textContent = 'Game over';
+        if (playerScore == 5 || computerScore == 5) {
             playerScore = 0;
             computerScore = 0;
+            playerSelection = button.id;
+            playRound(playerSelection, computerSelection);
+        } else {
+            playerSelection = button.id;
+            playRound(playerSelection, computerSelection);
         }
     })
 })
@@ -34,9 +35,9 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerPlay().toLowerCase();
     if (playerSelection == computerSelection) {
-        showScore.textContent = 'You ' + playerScore + ' : ' + computerScore + ' Enemy';
-        showResult.textContent = 'It\'s a tie!';
-        gameOver.textContent = '';
+        updateScore.textContent = playerScore + ' : ' + computerScore;
+        updateResult.style.color = "blue";
+        updateResult.textContent = 'It\'s a tie!';
     } else if (
         (playerSelection == 'rock' && computerSelection == 'paper') ||
         (playerSelection == 'paper' && computerSelection == 'scissors') ||
@@ -44,9 +45,15 @@ function playRound(playerSelection, computerSelection) {
         ) {
         computerScore++;
         computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
-        showScore.textContent = 'You ' + playerScore + ' : ' + computerScore + ' Enemy';
-        showResult.textContent = computerSelection + ' beats ' + playerSelection + '. You lost this round.';
-        gameOver.textContent = '';
+        if (computerScore == 5) {
+            updateScore.textContent = playerScore + ' : ' + computerScore;
+            updateResult.style.color = "red";
+            updateResult.textContent = computerSelection + ' beats ' + playerSelection + '. \nGame over. \nYou lost the game.';
+        } else {
+        updateScore.textContent = playerScore + ' : ' + computerScore;
+        updateResult.style.color = "red";
+        updateResult.textContent = computerSelection + ' beats ' + playerSelection + '. \nYou lost this round.';
+        }
     } else if (
         (computerSelection == 'rock' && playerSelection == 'paper') ||
         (computerSelection == 'paper' && playerSelection == 'scissors') ||
@@ -54,8 +61,14 @@ function playRound(playerSelection, computerSelection) {
         ) {
         playerScore++;
         playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
-        showScore.textContent = 'You ' + playerScore + ' : ' + computerScore + ' Enemy';
-        showResult.textContent = playerSelection + ' beats ' + computerSelection + '. You win this round.';
-        gameOver.textContent = '';
+        if (playerScore == 5) {
+            updateScore.textContent = playerScore + ' : ' + computerScore;
+            updateResult.style.color = "green";
+            updateResult.textContent = playerSelection + ' beats ' + computerSelection + '. \nGame over. \nYou won the game.';
+        } else {
+        updateScore.textContent = playerScore + ' : ' + computerScore;
+        updateResult.style.color = "green";
+        updateResult.textContent = playerSelection + ' beats ' + computerSelection + '. \nYou win this round.';
+        }
     }
 }
