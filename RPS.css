@@ -19,17 +19,18 @@ body, body * {
     white-space: pre-line;
 }
 
+#playAgain, #buttonsRPS {
+    position: absolute;
+    top: 300px;
+}
+
 #buttonsRPS {
     display: block;
 }
 
 #playAgain {
     display: none;
-}
-
-#playAgain, #buttonsRPS {
-    position: absolute;
-    top: 300px;
+    margin-top: 100px;
 }
 
 p {
@@ -43,8 +44,4 @@ button {
     font-size: 20px;
     text-align: center;
     margin: 10px 10px 10px 10px;
-}
-
-button[id=again] {
-    margin-top: 100px;
 }
