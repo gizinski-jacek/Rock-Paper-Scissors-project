@@ -15,21 +15,24 @@ const playAgainButton = document.querySelector('#again');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         playerSelection = button.id;
+        computerSelection = computerPlay();
+        console.log(computerSelection);
         playRound(playerSelection, computerSelection);
     })
 })
 
 // Randomize computers choice of Rock, Paper, Scissors.
-const array = ['Rock', 'Paper', 'Scissors'];
+const array = ['rock', 'paper', 'scissors'];
 function computerPlay() {
     return array[Math.floor(Math.random()*array.length)];
 }
 
-// Play out single round of RPS. Choices are case insensitive.
+// Play out single round of RPS.
 // Update related HTML elements (score, result of round).
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerPlay().toLowerCase();
+    // Choices are case insensitive. No longer needed with UI.
+    // playerSelection = playerSelection.toLowerCase();
+    // computerSelection = computerSelection.toLowerCase();
     if (playerSelection == computerSelection) {
         updateScore.textContent = playerScore + ' : ' + computerScore;
         updateResult.style.color = "blue";
