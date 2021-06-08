@@ -1,7 +1,3 @@
-2021.03.11  Created repository for The Odin Project Rock Paper Scissors game.
+# Rock Paper Scissors game project
 
-2021.03.13  Made core of the game with 5 rounds playing out.
-
-2021.03.14  Game plays best-of-nine. Shows final score and winner.
-
-2021.03.21  Starting work on proper UI for the game.
+Simple 5 round game of Rock Paper Scissors versus computer AI using my basic understanding of Javascript and DOM manipulation.
